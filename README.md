@@ -60,8 +60,8 @@
 | block         | string     | null:false        |
 | building      | string     |                   |
 | phone_number  | string     | null: false       |
-| user          | references | foreign_key: true |
-| product       | references | foreign_key: true |
+| buy_record    | references | foreign_key: true |
+
 
 ### Association
   belongs_to :buy_record
