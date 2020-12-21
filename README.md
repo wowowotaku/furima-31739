@@ -23,17 +23,17 @@
 | Column       | Type        | Options           |
 |--------------|-------------|-------------------|
 | product_name | string      | null: false       |
-| category     | string      | null: false       |
+| category_id  | string      | null: false       |
 | explain      | text        | null: false       |
 | price        | integer     | null: false       |
-| seller       | references  | foreign_key: true |
+| user         | references  | foreign_key: true |
 | status       | text        | null: false       |
 | shipping_fee | integer     | null:false        |
 | from         | string      | null:false        |
 | day          | integer     | null:false        |
 
 ### Association
-  belongs_to :users
+  belongs_to :user
   has_one :buy_record
 
 
@@ -41,27 +41,26 @@
 
 | Column   | Type        | Options           | 
 |----------|-------------|-------------------|
-| consumer | references  | foreign_key: true |
-| bought   | references  | foreign_key: true | 
+| user     | references  | foreign_key: true |
+| product  | references  | foreign_key: true | 
 
 ### Association
-  belongs_to :users
-  has_one :products
+  belongs_to :user
+  belongs_to :product
   has_one :send_to
 
 
 ## send_to table
 
-| Column       | Type    | Options     |
-|--------------|---------|-------------|
-| postcode     | integer | null: false |
-| prefecture   | string  | null: false |
-| city         | string  | null: false |
-| block        | string  | null:false  |
-| building     | string  | null: false |
-| phone_number | string  | null: false |
+| Column        | Type       | Options           |
+|---------------|------------|-------------------|
+| postcode      | integer    | null: false       |
+| prefecture_id | integer    | null: false       |
+| city          | string     | null: false       |
+| block         | string     | null:false        |
+| building      | string     |                   |
+| phone_number  | string     | null: false       |
+| user          | references | foreign_key: true |
 
 ### Association
-  has_one :buy_record
-
-  
+  belongs_to :buy_record
