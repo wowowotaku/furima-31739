@@ -23,7 +23,7 @@
 | Column          | Type        | Options           |
 |-----------------|-------------|-------------------|
 | product_name    | string      | null: false       |
-| category_id     | string      | null: false       |
+| category_id     | integer     | null: false       |
 | explain         | text        | null: false       |
 | price           | integer     | null: false       |
 | user            | references  | foreign_key: true |
@@ -55,7 +55,7 @@
 | Column        | Type       | Options           |
 |---------------|------------|-------------------|
 | postcode      | string     | null: false       |
-| prefecture_id | integer    | null: false       |
+| from_id       | integer    | null: false       |
 | city          | string     | null: false       |
 | block         | string     | null:false        |
 | building      | string     |                   |
