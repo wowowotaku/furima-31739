@@ -1,24 +1,67 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users table
 
-Things you may want to cover:
+| column             | Type    | Options                   |
+|--------------------|---------|---------------------------|
+| user_name          | string  | null: false               |
+| email              | string  | null: false, unique: true |
+| encrypted_password | string  | null: false               |
+| last_name          | string  | null: false               |
+| first_name         | string  | null: false               |
+| last_name_kana     | string  | null: false               |
+| first_name_kana    | string  | null: false               |
+| birthday           | date    | null: false               |
 
-* Ruby version
+### Association
+  has_many :products
+  has_many :buy_records
 
-* System dependencies
 
-* Configuration
+## products table
 
-* Database creation
+| Column          | Type        | Options           |
+|-----------------|-------------|-------------------|
+| product_name    | string      | null: false       |
+| category_id     | integer     | null: false       |
+| explain         | text        | null: false       |
+| price           | integer     | null: false       |
+| user            | references  | foreign_key: true |
+| status_id       | integer     | null: false       |
+| shipping_fee_id | integer     | null:false        |
+| from_id         | integer     | null:false        |
+| day_id          | integer     | null:false        |
 
-* Database initialization
+### Association
+  belongs_to :user
+  has_one :buy_record
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+## buy_record table
 
-* Deployment instructions
+| Column   | Type        | Options           | 
+|----------|-------------|-------------------|
+| user     | references  | foreign_key: true |
+| product  | references  | foreign_key: true | 
 
-* ...
+### Association
+  belongs_to :user
+  belongs_to :product
+  has_one :send_to
+
+
+## send_to table
+
+| Column        | Type       | Options           |
+|---------------|------------|-------------------|
+| postcode      | string     | null: false       |
+| from_id       | integer    | null: false       |
+| city          | string     | null: false       |
+| block         | string     | null:false        |
+| building      | string     |                   |
+| phone_number  | string     | null: false       |
+| buy_record    | references | foreign_key: true |
+
+
+### Association
+  belongs_to :buy_record
