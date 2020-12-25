@@ -4,7 +4,7 @@
 
 | column             | Type    | Options                   |
 |--------------------|---------|---------------------------|
-| user_name          | string  | null: false               |
+| nickname           | string  | null: false               |
 | email              | string  | null: false, unique: true |
 | encrypted_password | string  | null: false               |
 | last_name          | string  | null: false               |
@@ -14,15 +14,15 @@
 | birthday           | date    | null: false               |
 
 ### Association
-  has_many :products
+  has_many :items
   has_many :buy_records
 
 
-## products table
+## items table
 
 | Column          | Type        | Options           |
 |-----------------|-------------|-------------------|
-| product_name    | string      | null: false       |
+| item_name       | string      | null: false       |
 | category_id     | integer     | null: false       |
 | explain         | text        | null: false       |
 | price           | integer     | null: false       |
@@ -42,11 +42,11 @@
 | Column   | Type        | Options           | 
 |----------|-------------|-------------------|
 | user     | references  | foreign_key: true |
-| product  | references  | foreign_key: true | 
+| item     | references  | foreign_key: true | 
 
 ### Association
   belongs_to :user
-  belongs_to :product
+  belongs_to :item
   has_one :send_to
 
 
