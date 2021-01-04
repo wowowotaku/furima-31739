@@ -73,3 +73,5 @@ gem 'faker'
 gem "pry-rails"
 
 gem "pry-byebug"
+
+gem 'rails-i18n'
