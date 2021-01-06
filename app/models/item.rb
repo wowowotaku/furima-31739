@@ -14,4 +14,11 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one :buy_record
   has_one_attatched :image
+
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :category
+  belongs_to_active_hash :day
+  belongs_to_active_hash :from
+  belongs_to_active_hash :shipping_fee
+  belongs_to_active_hash :status
 end
