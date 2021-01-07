@@ -5,7 +5,7 @@ RSpec.describe User, type: :model do
     before do
       @user = FactoryBot.build(:user)
     end
-    
+
     context '正常系' do
       it '全ての値が正常値であれば登録できる' do
         expect(@user).to be_valid
@@ -13,7 +13,6 @@ RSpec.describe User, type: :model do
     end
 
     context '異常系' do
-
       it 'メールアドレスが必須であること' do
         @user.email = nil
         @user.valid?
@@ -53,11 +52,11 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
 
-        it 'ユーザー本名は、名字が必須であること' do
-          @user.last_name = nil
-          @user.valid?
-          expect(@user.errors.full_messages).to include("Last name can't be blank")
-        end
+      it 'ユーザー本名は、名字が必須であること' do
+        @user.last_name = nil
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name can't be blank")
+      end
 
       it 'ユーザー本名は、名前が必須であること' do
         @user.first_name = nil
@@ -126,14 +125,14 @@ RSpec.describe User, type: :model do
         @user.password = '666666'
         @user.password_confirmation = '666666'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password Password Include both letters and numbers")
+        expect(@user.errors.full_messages).to include('Password Password Include both letters and numbers')
       end
 
       it 'パスワードは6文字以上であっても英字のみでは登録できない' do
         @user.password = 'aaaaaa'
         @user.password_confirmation = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password Password Include both letters and numbers")
+        expect(@user.errors.full_messages).to include('Password Password Include both letters and numbers')
       end
     end
   end
