@@ -68,13 +68,13 @@ RSpec.describe Item, type: :model do
       end
 
       it '価格の範囲が¥300以上であること' do
-        @item.price = '299'
+        @item.price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
       end
 
       it '価格の範囲が¥9,999,999以下であること' do
-        @item.price = '10000000'
+        @item.price = 10_000_000
         @item.valid?
         expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
@@ -83,6 +83,36 @@ RSpec.describe Item, type: :model do
         @item.price = '８００'
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is not a number')
+      end
+
+      it 'category_id は1以外でないと登録できないこと' do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Category must be other than 1')
+      end
+
+      it 'status_id は1以外でないと登録できないこと' do
+        @item.status_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Status must be other than 1')
+      end
+
+      it 'shippingfee_id は1以外でないと登録できないこと' do
+        @item.shippingfee_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Shippingfee must be other than 1')
+      end
+
+      it 'from_id は1以外でないと登録できないこと' do
+        @item.from_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include('From must be other than 1')
+      end
+
+      it 'day_id は1以外でないと登録できないこと' do
+        @item.day_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Day must be other than 1')
       end
     end
   end
