@@ -28,7 +28,7 @@
 | price           | integer     | null: false       |
 | user            | references  | foreign_key: true |
 | status_id       | integer     | null: false       |
-| shipping_fee_id | integer     | null:false        |
+| shippingfee_id  | integer     | null:false        |
 | from_id         | integer     | null:false        |
 | day_id          | integer     | null:false        |
 

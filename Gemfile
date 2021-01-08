@@ -75,3 +75,7 @@ gem "pry-rails"
 gem "pry-byebug"
 
 gem 'rails-i18n'
+
+gem 'mini_magick'
+
+gem 'image_processing', '~> 1.2'
