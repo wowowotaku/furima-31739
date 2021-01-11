@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit]
+  before_action :reject_edit, only: :edit
 
   def index
     @items = Item.all.order(id: 'DESC')
@@ -24,7 +25,6 @@ class ItemsController < ApplicationController
 
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
@@ -41,5 +41,12 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:image, :item_name, :explain, :category_id, :status_id, :shippingfee_id, :from_id, :day_id,
                                  :price).merge(user_id: current_user.id)
+  end
+
+  def reject_edit
+    @item = Item.find(params[:id])
+    unless current_user == @item.user
+      redirect_to root_path
+    end
   end
 end
